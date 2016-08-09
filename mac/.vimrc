@@ -1,17 +1,16 @@
 set nocompatible
 set backspace=indent,eol,start
 
-if has("vms")
-  set nobackup
-else
-  set backup 
-endif
-
 set history=50
 set ruler
 set showcmd
 set incsearch
 set number
+set nobackup
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0
 
 map python a#!/usr/bin/python<ESC>
 
@@ -37,3 +36,7 @@ endif
 
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
                 \ | wincmd p | diffthis
+
+call plug#begin('~/.vim/plugged')
+Plug 'dag/vim2hs'
+call plug#end()
