@@ -1,3 +1,8 @@
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-surround'
+Plug 'tomasr/molokai'
+call plug#end()
+
 set nocompatible
 set backspace=indent,eol,start
 
@@ -6,16 +11,23 @@ set ruler
 set showcmd
 set incsearch
 set number
+set cursorline
 set nobackup
-set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
+set foldmethod=marker
 
-map python a#!/usr/bin/python<ESC>
+set expandtab
+
+colorscheme molokai
+syntax on
+let g:molokai_original = 1
+let g:rehash256 = 1
+set background=dark
+set t_Co=256
 
 if &t_Co > 2 || has("gui_running")
-  syntax on
   set hlsearch
 endif
 
@@ -37,6 +49,4 @@ endif
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
                 \ | wincmd p | diffthis
 
-call plug#begin('~/.vim/plugged')
-Plug 'dag/vim2hs'
-call plug#end()
+
