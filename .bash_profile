@@ -1,13 +1,8 @@
 #!/bin/bash
 
-PATH=$PATH:/Users/derbuihan/Library/Android/sdk/platform-tools:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:  \[\033[01;34m\]\w\[\033[00m\]\$ '
+
 if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
+  . ~/.bashrc
 fi
 
-export PATH="$PATH:/Applications/microchip/xc8/v1.38/bin"
-
-export PATH="$PATH:"/Applications/microchip/xc16/v1.26/bin""
-
-export PATH="$PATH:"/Applications/microchip/xc32/v1.42/bin""

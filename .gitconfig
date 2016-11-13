@@ -1,8 +1,7 @@
-# This is Git's per-user configuration file.
 [user]
 	name = derbuihan
 	email = derbuihan@gmail.com
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore_global
 
-# Please adapt and uncomment the following lines:
-#	name = derbuihan
-#	email = derbuihan@derbuihan-no-MacBook-Pro.local

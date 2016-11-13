@@ -1,2 +1,3 @@
 
 :set prompt "ghci> "
+import Data.Numbers.Primes
