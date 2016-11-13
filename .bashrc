@@ -12,4 +12,6 @@ fi
 alias df="df -h"
 alias la="ls -a"
 alias ll="ls -l"
+alias lal="la -l"
+alias lla="ll -a"
 
