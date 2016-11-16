@@ -9,6 +9,9 @@ if [ "`uname`" == 'Darwin' ]; then
 else
   alias ls="ls --color=auto"
 fi
+if which free > /dev/null; then
+  alias free="free -h"
+fi
 alias df="df -h"
 alias la="ls -a"
 alias ll="ls -l"
