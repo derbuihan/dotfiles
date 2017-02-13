@@ -31,6 +31,8 @@ fi
 
 alias la="ls -a"
 alias ll="ls -l"
+alias lf="ls --full-time"
 alias lal="la -l"
 alias lla="ll -a"
-
+alias lfa="lf -a"
+alias laf="la --full-time"
