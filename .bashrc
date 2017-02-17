@@ -7,13 +7,14 @@ if [ "`uname`" == 'Darwin' ]; then
   MANPATH=$MANPATH:/usr/local/opt/coreutils/libexec/gnubin
   alias ls="gls --color=auto"
   alias df="gdf -h"
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
 else
   alias ls="ls --color=auto"
   alias df="df -h"
 fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 if which free > /dev/null; then
   alias free="free -h"
