@@ -1,3 +1,4 @@
 
 :set prompt "ghci> "
 import Data.Numbers.Primes
+import Data.Ratio
