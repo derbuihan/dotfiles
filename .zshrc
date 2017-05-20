@@ -10,7 +10,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-if [ "`uname`" == 'Darwin' ]; then
+if [ "`uname`" = 'Darwin' ]; then
   PATH=$PATH:/Users/derbuihan/Library/Android/sdk/platform-tools
   PATH=$PATH:/usr/local/bin
   PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
@@ -57,6 +57,8 @@ if [[ ! -d ~/.zplug ]];then
 fi
 source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-history-substring-search", hook-build:"__zsh_version 4.3"
 if ! zplug check; then
   printf "Install? [y/N]: "
   if read -q; then
