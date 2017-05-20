@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# pyenv install
+PROMPT="%F{6}%n@%m %~ $%f "
+
 if [ ! -e ~/.pyenv ]; then
   git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 fi
@@ -39,6 +40,7 @@ fi
 #  export HTTPS_PROXY=$http_proxy
 #fi
 
+
 alias sl="ls"
 alias la="ls -a"
 alias ll="ls -l"
@@ -49,3 +51,17 @@ alias lfa="lf -a"
 alias laf="la --full-time"
 
 alias df="df -h"
+
+if [[ ! -d ~/.zplug ]];then
+  git clone https://github.com/zplug/zplug ~/.zplug
+fi
+source ~/.zplug/init.zsh
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+if ! zplug check; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+zplug load
+
