@@ -1,15 +1,20 @@
 #!/bin/bash
 
+# pyenv install
+if [ ! -e ~/.pyenv ];
+  git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+fi
+
 if [ "`uname`" == 'Darwin' ]; then
   PATH=$PATH:/Users/derbuihan/Library/Android/sdk/platform-tools
   PATH=$PATH:/usr/local/bin
   PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
   MANPATH=$MANPATH:/usr/local/opt/coreutils/libexec/gnubin
   alias ls="gls --color=auto"
-  alias df="gdf -h"
+  alias df="gdf"
 else
   alias ls="ls --color=auto"
-  alias df="df -h"
+  alias df="df"
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
@@ -40,3 +45,5 @@ alias lal="la -l"
 alias lla="ll -a"
 alias lfa="lf -a"
 alias laf="la --full-time"
+
+alias df="df -h"
