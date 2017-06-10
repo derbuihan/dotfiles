@@ -33,13 +33,18 @@ else
   alias gip="wget -q -O - 'http://httpbin.org/ip' | cat -"
 fi
 
+if which tmux > /dev/null; then
+  if [ ! -e ~/.tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  fi
+fi
+
 #if test `which tor > /dev/null` -a `which polipo > /dev/null`; then
 #  export http_proxy=http://localhost:8123
 #  export HTTP_PROXY=$http_proxy
 #  export https_proxy=$http_proxy
 #  export HTTPS_PROXY=$http_proxy
 #fi
-
 
 alias sl="ls"
 alias la="ls -a"
