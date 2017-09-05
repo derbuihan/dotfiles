@@ -14,6 +14,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'tomasr/molokai'
   Plug 'itchyny/lightline.vim'
+  Plug 'keith/swift.vim', { 'for': 'swift' }
 call plug#end()
 ""}}}
 
@@ -55,10 +56,35 @@ set ignorecase
 set smartcase
 set hlsearch
 
+nnoremap jq :%!jq '.'
+
+augroup Binary
+  au!
+  au BufReadPre  *.bin let &bin=1
+  au BufReadPost *.bin if &bin | %!xxd
+  au BufReadPost *.bin set ft=xxd | endif
+  au BufWritePre *.bin if &bin | %!xxd -r
+  au BufWritePre *.bin endif
+  au BufWritePost *.bin if &bin | %!xxd
+  au BufWritePost *.bin set nomod | endif
+augroup END
+
 if s:plug.is_installed("molokai")
   colorscheme molokai
   let g:molokai_original = 1
   let g:rehash256=1
   set t_Co=256
 endif
+
+if s:plug.is_installed("vimtex")
+  let g:vimtex_latexmk_continuous = 1
+  let g:vimtex_latexmk_background = 1
+  "let g:vimtex_latexmk_options = '-pdf'
+  let g:vimtex_latexmk_options = '-pdfdvi'
+  "let g:vimtex_latexmk_options = '-pdfps'
+  "let g:vimtex_view_general_viewer = 'open'
+  let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+  let g:vimtex_view_general_options = '@line @pdf @tex'
+endif
+
 syntax on
