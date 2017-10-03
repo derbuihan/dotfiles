@@ -18,6 +18,7 @@ if [ "`uname`" = 'Darwin' ]; then
   export PATH=/usr/local/Cellar/smlnj/110.76/libexec/bin:$PATH
   alias ls="gls --color=auto"
   alias df="gdf"
+  alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 else
   alias ls="ls --color=auto"
   alias df="df"
@@ -54,8 +55,15 @@ alias lal="la -l"
 alias lla="ll -a"
 alias lfa="lf -a"
 alias laf="la --full-time"
-
 alias df="df -h"
+
+alias wget="wget -e robots=off"
+
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
 
 if [[ ! -d ~/.zplug ]];then
   git clone https://github.com/zplug/zplug ~/.zplug
