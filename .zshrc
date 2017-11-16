@@ -2,13 +2,28 @@
 
 PROMPT="%F{6}%n@%m %~ $%f "
 
-if [ ! -e ~/.pyenv ]; then
-  git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+# pyenv
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ ! -d "${PYENV_ROOT}" ]; then
+  git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+  git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+fi
+if [ -d "${PYENV_ROOT}" ]; then
+  export PATH=${PYENV_ROOT}/bin:$PATH
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# rbenv
+export RBENV_ROOT="${HOME}/.rbenv"
+if [ ! -d "${RBENV_ROOT}" ]; then
+  git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+fi
+if [ -d "${RBENV_ROOT}" ]; then
+  export PATH=${RBENV_ROOT}/bin:$PATH
+  eval "$(rbenv init -)"
+fi
 
 if [ "`uname`" = 'Darwin' ]; then
   PATH=$PATH:/Users/derbuihan/Library/Android/sdk/platform-tools
@@ -28,6 +43,7 @@ if which free > /dev/null; then
   alias free="free -h"
 fi
 
+# chech my global ip address.
 if which jq > /dev/null; then
   alias gip="wget -q -O - 'http://httpbin.org/ip' | cat - | jq -r '.origin'"
 else
@@ -40,6 +56,7 @@ if which tmux > /dev/null; then
   fi
 fi
 
+# tor proxy
 #if test `which tor > /dev/null` -a `which polipo > /dev/null`; then
 #  export http_proxy=http://localhost:8123
 #  export HTTP_PROXY=$http_proxy
@@ -47,6 +64,7 @@ fi
 #  export HTTPS_PROXY=$http_proxy
 #fi
 
+# alias
 alias sl="ls"
 alias la="ls -a"
 alias ll="ls -l"
@@ -56,15 +74,16 @@ alias lla="ll -a"
 alias lfa="lf -a"
 alias laf="la --full-time"
 alias df="df -h"
-
 alias wget="wget -e robots=off"
 
+# zsh history
 export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=100000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
 
+# zsh plugin maneger
 if [[ ! -d ~/.zplug ]];then
   git clone https://github.com/zplug/zplug ~/.zplug
 fi
