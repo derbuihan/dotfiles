@@ -83,6 +83,9 @@ export SAVEHIST=100000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
 
+# Emacs keybind
+bindkey -e
+
 # zsh plugin maneger
 if [[ ! -d ~/.zplug ]];then
   git clone https://github.com/zplug/zplug ~/.zplug
