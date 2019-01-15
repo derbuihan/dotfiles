@@ -1,14 +1,10 @@
 #!/bin/bash
 
-cp .bash_profile ~/
-cp .bashrc ~/
-cp .zshrc ~/
-cp .ghci ~/
-cp .gitconfig ~/
-cp .gitignore_global ~/
-cp .tmux.conf ~/
-cp .latexmkrc ~/
-cp .vimrc ~/
-cp .toprc ~/
-cp -r .vim ~/
+DOT_FILES=(.bashrc .bash_profile .zshrc .ghci .gitconfig .gitignore_global .tmux.conf .vimrc)
+
+for file in ${DOT_FILES[@]}
+do
+    ln -sf $HOME/dotfiles/$file $HOME/$file
+done
+
 
