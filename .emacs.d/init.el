@@ -1,6 +1,4 @@
 
-;; (load "~/.emacs.d/lisp/PG/generic/proof-site")
-
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
@@ -69,6 +67,7 @@
 
 ;; ProofGeneralの設定
 (setq proof-splash-enable nil)
+(custom-set-variables '(coq-prog-name "/usr/local/bin/coqtop") '(proof-three-window-enable t))
 
 ;; Load company-coq when opening Coq files
 (add-hook 'coq-mode-hook #'company-coq-mode)
