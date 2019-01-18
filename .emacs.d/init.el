@@ -54,11 +54,8 @@
 (show-paren-mode 1)
 
 ;; 括弧の補完
-(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
 (setq skeleton-pair 1)
+(electric-pair-mode 1)
 
 ;; スクロールは１行ごとに
 (setq scroll-conservatively 1)
@@ -82,6 +79,7 @@
 
 (exec-path-from-shell-initialize)
 
+
 ;; ProofGeneralの設定
 (setq proof-splash-enable nil)
 
@@ -98,7 +96,10 @@
 
 ;; Load company-coq when opening Coq files
 (add-hook 'coq-mode-hook #'company-coq-mode)
-(add-hook 'racket-mode-hook #'aggressive-indent-mode)
+;; (add-hook 'racket-mode-hook #'aggressive-indent-mode)
+(add-hook 'racket-mode-hook
+          (lambda ()
+            (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (custom-set-faces
