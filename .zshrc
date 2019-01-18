@@ -2,7 +2,6 @@
 
 PROMPT="%F{6}%n@%m %~ $%f "
 
-# pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
 if [ ! -d "${PYENV_ROOT}" ]; then
   git clone https://github.com/yyuu/pyenv.git ~/.pyenv
@@ -75,6 +74,9 @@ alias lfa="lf -a"
 alias laf="la --full-time"
 alias df="df -h"
 alias wget="wget -e robots=off"
+alias tubame-proxy="ssh -f -N -D 1080 tubame"
+alias fig='docker-compose'
+alias rm='rmtrash'
 
 # zsh history
 export HISTFILE=${HOME}/.zsh_history
@@ -82,9 +84,6 @@ export HISTSIZE=1000
 export SAVEHIST=100000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
-
-# Emacs keybind
-bindkey -e
 
 # zsh plugin maneger
 if [[ ! -d ~/.zplug ]];then
@@ -102,3 +101,5 @@ if ! zplug check; then
 fi
 zplug load
 
+# opam configuration
+test -r /Users/derbuihan/.opam/opam-init/init.zsh && . /Users/derbuihan/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

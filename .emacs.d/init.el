@@ -53,6 +53,13 @@
 ;; 対応する括弧を光らせる
 (show-paren-mode 1)
 
+;; 括弧の補完
+(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
+(setq skeleton-pair 1)
+
 ;; スクロールは１行ごとに
 (setq scroll-conservatively 1)
 
@@ -65,22 +72,38 @@
 ;; コピペを出来るようにする．
 (cond (window-system (setq x-select-enable-clipboard t)))
 
+;; quickrunの設定
+(global-set-key (kbd "s-r") 'quickrun)
+(global-set-key (kbd "C-<f5>") 'quickrun-with-arg)
+(global-set-key (kbd "M-<f5>") 'quickrun-compile-only)
+
+;; tab で補間
+(setq tab-always-indent 'complete)
+
+(exec-path-from-shell-initialize)
+
 ;; ProofGeneralの設定
 (setq proof-splash-enable nil)
-(custom-set-variables '(coq-prog-name "/usr/local/bin/coqtop") '(proof-three-window-enable t))
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  ;;'(coq-prog-name "/usr/local/bin/coqtop")
+  '(package-selected-packages
+     (quote
+       (exec-path-from-shell rainbow-delimiters quickrun names aggressive-indent racket-mode company-coq company proof-general)))
+  '(proof-three-window-enable t))
 
 ;; Load company-coq when opening Coq files
 (add-hook 'coq-mode-hook #'company-coq-mode)
+(add-hook 'racket-mode-hook #'aggressive-indent-mode)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (company-coq company proof-general))))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  )
