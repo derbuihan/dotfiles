@@ -75,8 +75,11 @@ alias laf="la --full-time"
 alias df="df -h"
 alias wget="wget -e robots=off"
 alias tubame-proxy="ssh -f -N -D 1080 tubame"
-alias fig='docker-compose'
+alias home-proxy="ssh -f -N -D 1080 vm"
+alias dc='docker-compose'
 alias rm='rmtrash'
+alias ghc='stack ghc --'
+alias ghci='stack ghci --'
 
 # zsh history
 export HISTFILE=${HOME}/.zsh_history
