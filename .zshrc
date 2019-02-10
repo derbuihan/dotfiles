@@ -24,6 +24,11 @@ if [ -d "${RBENV_ROOT}" ]; then
   eval "$(rbenv init -)"
 fi
 
+# haskell stack
+alias ghc='stack ghc --'
+alias ghci='stack ghci --'
+export PATH=$PATH:~/.local/bin
+
 if [ "`uname`" = 'Darwin' ]; then
   PATH=$PATH:/Users/derbuihan/Library/Android/sdk/platform-tools
   PATH=$PATH:/usr/local/bin
@@ -74,12 +79,8 @@ alias lfa="lf -a"
 alias laf="la --full-time"
 alias df="df -h"
 alias wget="wget -e robots=off"
-alias tubame-proxy="ssh -f -N -D 1080 tubame"
-alias home-proxy="ssh -f -N -D 1080 vm"
 alias dc='docker-compose'
 alias rm='rmtrash'
-alias ghc='stack ghc --'
-alias ghci='stack ghci --'
 
 # zsh history
 export HISTFILE=${HOME}/.zsh_history
@@ -106,3 +107,5 @@ zplug load
 
 # opam configuration
 test -r /Users/derbuihan/.opam/opam-init/init.zsh && . /Users/derbuihan/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+
