@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # pyenv install
-if [ ! -e ~/.pyenv ]; then
-  git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-fi
+#if [ ! -e ~/.pyenv ]; then
+#  git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+#fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 
 if [ "`uname`" == 'Darwin' ]; then
   PATH=$PATH:/Users/derbuihan/Library/Android/sdk/platform-tools
@@ -22,15 +22,15 @@ else
   alias df="df"
 fi
 
-if which free > /dev/null; then
-  alias free="free -h"
-fi
+#if which free > /dev/null; then
+#  alias free="free -h"
+#fi
 
-if which jq > /dev/null; then
-  alias gip="wget -q -O - 'http://httpbin.org/ip' | cat - | jq -r '.origin'"
-else
-  alias gip="wget -q -O - 'http://httpbin.org/ip' | cat -"
-fi
+#if which jq > /dev/null; then
+#  alias gip="wget -q -O - 'http://httpbin.org/ip' | cat - | jq -r '.origin'"
+#else
+#  alias gip="wget -q -O - 'http://httpbin.org/ip' | cat -"
+#fi
 
 #if test `which tor > /dev/null` -a `which polipo > /dev/null`; then
 #  export http_proxy=http://localhost:8123

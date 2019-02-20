@@ -14,7 +14,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'tomasr/molokai'
   Plug 'itchyny/lightline.vim'
-  Plug 'keith/swift.vim', { 'for': 'swift' }
 call plug#end()
 ""}}}
 
