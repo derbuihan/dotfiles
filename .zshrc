@@ -26,14 +26,20 @@ if which stack > /dev/null 2>&1; then
 fi
 
 # fzf
-if which fzf > /dev/null 2>&1 && [[ -d "/usr/local/Cellar/fzf/0.21.1/shell" ]]; then
-  # brew install fzf
-  source "/usr/local/Cellar/fzf/0.21.1/shell/completion.zsh" 2> /dev/null
-  source "/usr/local/Cellar/fzf/0.21.1/shell/key-bindings.zsh"
-  export FZF_COMPLETION_TRIGGER=''
-  bindkey '^T' fzf-completion
-  bindkey '^I' $fzf_default_completion
+if [[ ! -d ~/.fzf ]]; then
+  echo "Install fzf"
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install --bin
 fi
+if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
+fi
+[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
+source "$HOME/.fzf/shell/key-bindings.zsh"
+export FZF_COMPLETION_TRIGGER=''
+bindkey '^T' fzf-completion
+bindkey '^I' $fzf_default_completion
+
 if [[ -n "$TMUX" ]]; then
   # brew install tmux
   export FZF_TMUX=1
@@ -50,7 +56,6 @@ alias ll="ls -l"
 alias lal="la -l"
 alias lla="ll -a"
 alias df="df -h"
-alias dc='docker-compose'
 function cd(){
     builtin cd $@ && ls;
 }
@@ -112,5 +117,3 @@ zinit light "zsh-users/zsh-autosuggestions"
 
 zinit ice pick"async.zsh" src"pure.zsh"
 zinit light "sindresorhus/pure"
-
-### End of Zinit's installer chunk
