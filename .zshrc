@@ -9,7 +9,13 @@ if [ "`uname`" = 'Darwin' ]; then
   alias df="gdf"
 
   # brew install rmtrash 
-  alias rm="rmtrash"
+  alias rm="trash"
+
+  # Apple Silicon
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  # TeX
+  eval "$(/usr/libexec/path_helper)"
 fi
 
 # nvim 
@@ -100,11 +106,11 @@ if [[ -d /Applications/Blender.app ]]; then
 fi
 
 ## zsh plugin maneger
-if [[ ! -d ~/.zinit ]]; then
+if [[ ! -d ~/.local/share/zinit ]]; then
   echo "Install zinit"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+  sh -c "$(curl -fsSL https://git.io/zinit-install)"
 fi
-source $HOME/.zinit/bin/zinit.zsh
+source $HOME/.local/share/zinit/zinit.git/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -117,3 +123,13 @@ zinit light "zsh-users/zsh-autosuggestions"
 
 zinit ice pick"async.zsh" src"pure.zsh"
 zinit light "sindresorhus/pure"
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk

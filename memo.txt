@@ -1,3 +1,6 @@
-ubuntu install pachages
+ubuntu install packages
     vim git tmux build-essential jq haskell-platform
+
+mac install packages
+    vim git tmux jq wget trash coreutils nvim
 
