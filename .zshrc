@@ -8,11 +8,12 @@ if [ "`uname`" = 'Darwin' ]; then
   alias ls="gls --color=auto"
   alias df="gdf"
 
-  # brew install rmtrash 
+  # brew install trash 
   alias rm="trash"
 
   # Apple Silicon
   eval "$(/opt/homebrew/bin/brew shellenv)"
+  #export PATH="/opt/homebrew/bin:$PATH"
 
   # TeX
   eval "$(/usr/libexec/path_helper)"
@@ -21,7 +22,7 @@ fi
 # nvim 
 if which nvim > /dev/null 2>&1; then
   # brew install nvim
-  alias vim="nvim"
+  #alias vim="nvim"
 fi
 
 # haskell stack
@@ -76,34 +77,31 @@ setopt extended_history
 setopt hist_reduce_blanks
 autoload -Uz compinit && compinit -C
 
-# gcloud
-#source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-#source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-
-# Golang
-if [[ ! -d $HOME/.go ]]; then
-  export GOPATH=$HOME/.go
-fi
-
+# anyenv
+eval "$(anyenv init - --no-rehash)"
 
 # Python
-if [[ -d /usr/local/anaconda3 ]]; then
-  source /usr/local/anaconda3/etc/profile.d/conda.sh
-elif [[ -d $HOME/.pyenv ]]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/derbuihan/.anyenv/envs/pyenv/versions/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/derbuihan/.anyenv/envs/pyenv/versions/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/derbuihan/.anyenv/envs/pyenv/versions/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/derbuihan/.anyenv/envs/pyenv/versions/miniforge3/bin:$PATH"
+    fi
 fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 
 # Rust
 if [[ -d $HOME/.cargo ]]; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-# Blender
-if [[ -d /Applications/Blender.app ]]; then
-  alias blender="/Applications/Blender.app/Contents/MacOS/Blender"
-fi
 
 ## zsh plugin maneger
 if [[ ! -d ~/.local/share/zinit ]]; then
@@ -114,10 +112,10 @@ source $HOME/.local/share/zinit/zinit.git/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-zinit ice wait'!0'; zinit light "zsh-users/zsh-syntax-highlighting" 
+zinit ice wait'!0' lucid; zinit light "zsh-users/zsh-syntax-highlighting" 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
-zinit ice wait'!0'; zinit light "zsh-users/zsh-completions"
+zinit ice wait'!0' lucid; zinit light "zsh-users/zsh-completions"
 
 zinit light "zsh-users/zsh-autosuggestions"
 
@@ -133,3 +131,5 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+
+
