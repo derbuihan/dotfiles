@@ -1,19 +1,23 @@
 #!/bin/zsh
 
-#PROMPT="%F{6}%n@%m %~ $%f "
-
 # setting for MacOS
 if [ "`uname`" = 'Darwin' ]; then
   # brew instll coreutils
   alias ls="gls --color=auto"
   alias df="gdf"
 
+  # qt5
+  export PATH="/opt/homebrew/opt/qt5/bin:$PATH"
+
   # brew install trash 
   alias rm="trash"
+  
+  # brew install colordiff
+  alias diff="colordiff"
 
   # Apple Silicon
   eval "$(/opt/homebrew/bin/brew shellenv)"
-  #export PATH="/opt/homebrew/bin:$PATH"
+  export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
 
   # TeX
   eval "$(/usr/libexec/path_helper)"
@@ -21,9 +25,10 @@ fi
 
 # nvim 
 if which nvim > /dev/null 2>&1; then
-  # brew install nvim
+  #brew install nvim
   #alias vim="nvim"
 fi
+export EDITOR=vim
 
 # haskell stack
 if which stack > /dev/null 2>&1; then
@@ -51,6 +56,16 @@ if [[ -n "$TMUX" ]]; then
   # brew install tmux
   export FZF_TMUX=1
   export FZF_TMUX_HEIGHT='60%'
+fi
+
+# direnv
+if which direnv > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+# colima
+if which colima > /dev/null 2>&1; then
+  export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 fi
 
 # alias
@@ -100,6 +115,12 @@ unset __conda_setup
 # Rust
 if [[ -d $HOME/.cargo ]]; then
   export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# Go
+if [[ -d $HOME/.go ]]; then
+  export GOPATH="$HOME/.go"
+  export PATH=$PATH:$GOPATH/bin
 fi
 
 
