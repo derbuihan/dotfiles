@@ -69,16 +69,8 @@
 ;; コピペを出来るようにする．
 (cond (window-system (setq x-select-enable-clipboard t)))
 
-;; quickrunの設定
-(global-set-key (kbd "s-r") 'quickrun)
-(global-set-key (kbd "C-<f5>") 'quickrun-with-arg)
-(global-set-key (kbd "M-<f5>") 'quickrun-compile-only)
-
 ;; tab で補間
 (setq tab-always-indent 'complete)
-
-(exec-path-from-shell-initialize)
-
 
 ;; ProofGeneralの設定
 (setq proof-splash-enable nil)
@@ -88,19 +80,13 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
-  ;;'(coq-prog-name "/usr/local/bin/coqtop")
+  '(coq-prog-name "/opt/homebrew/bin/coqtop")
   '(package-selected-packages
-     (quote
-       (exec-path-from-shell rainbow-delimiters quickrun names aggressive-indent racket-mode company-coq company proof-general)))
+     '(company-coq company proof-general))
   '(proof-three-window-enable t))
 
 ;; Load company-coq when opening Coq files
-(add-hook 'coq-mode-hook #'company-coq-mode)
-;; (add-hook 'racket-mode-hook #'aggressive-indent-mode)
-(add-hook 'racket-mode-hook
-          (lambda ()
-            (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'coq-mode-hook 'company-coq-mode)
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -108,3 +94,4 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
   )
+
