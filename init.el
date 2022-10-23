@@ -86,7 +86,7 @@
   '(proof-three-window-enable t))
 
 ;; Load company-coq when opening Coq files
-(add-hook 'coq-mode-hook #'company-coq-mode)
+(add-hook 'coq-mode-hook 'company-coq-mode)
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
