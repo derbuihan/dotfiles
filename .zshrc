@@ -1,77 +1,59 @@
 #!/bin/zsh
 
-# setting for MacOS
-if [ "`uname`" = 'Darwin' ]; then
-  # brew instll coreutils
-  alias ls="gls --color=auto"
-  alias df="gdf"
+# brew instll coreutils
+alias ls="gls --color=auto"
+alias df="gdf"
 
-  # qt5
-  export PATH="/opt/homebrew/opt/qt5/bin:$PATH"
+# qt5
+export PATH="/opt/homebrew/opt/qt5/bin:$PATH"
 
-  # brew install trash 
-  alias rm="trash"
-  
-  # brew install colordiff
-  alias diff="colordiff"
+# brew install trash 
+alias rm="trash"
 
-  # Apple Silicon
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
+# brew install colordiff
+alias diff="colordiff"
 
-  # TeX
-  eval "$(/usr/libexec/path_helper)"
+# Apple Silicon
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
+
+# TeX
+eval "$(/usr/libexec/path_helper)"
+
+# brew install nvim
+alias vim="nvim"
+export EDITOR=nvim
+
+# brew install stack
+alias ghc='stack ghc --'
+alias ghci='stack ghci --'
+
+# brew install fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# brew install tmux
+export FZF_TMUX=1
+export FZF_TMUX_HEIGHT='60%'
+
+# brew install direnv
+eval "$(direnv hook zsh)"
+
+# brew install colima
+export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+
+# Rust
+if [[ -d $HOME/.cargo ]]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-# nvim 
-if which nvim > /dev/null 2>&1; then
-  #brew install nvim
-  #alias vim="nvim"
-fi
-export EDITOR=vim
-
-# haskell stack
-if which stack > /dev/null 2>&1; then
-  # brew install stack
-  alias ghc='stack ghc --'
-  alias ghci='stack ghci --'
-fi
-
-# fzf
-if [[ ! -d ~/.fzf ]]; then
-  echo "Install fzf"
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install --bin
-fi
-if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
-fi
-[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
-source "$HOME/.fzf/shell/key-bindings.zsh"
-export FZF_COMPLETION_TRIGGER=''
-bindkey '^T' fzf-completion
-bindkey '^I' $fzf_default_completion
-
-if [[ -n "$TMUX" ]]; then
-  # brew install tmux
-  export FZF_TMUX=1
-  export FZF_TMUX_HEIGHT='60%'
-fi
-
-# direnv
-if which direnv > /dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
-fi
-
-# colima
-if which colima > /dev/null 2>&1; then
-  export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+# Go
+if [[ -d $HOME/.go ]]; then
+  export GOPATH="$HOME/.go"
+  export PATH=$PATH:$GOPATH/bin
 fi
 
 # alias
-# brew install wget
-alias gip="wget -q -O - 'http://httpbin.org/ip' | cat -"
-alias free="free -h"
+alias gip="curl ifconfig.io"
 alias sl="ls"
 alias la="ls -a"
 alias ll="ls -l"
@@ -110,18 +92,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-
-# Rust
-if [[ -d $HOME/.cargo ]]; then
-  export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-# Go
-if [[ -d $HOME/.go ]]; then
-  export GOPATH="$HOME/.go"
-  export PATH=$PATH:$GOPATH/bin
-fi
 
 
 ## zsh plugin maneger
