@@ -39,7 +39,7 @@ export FZF_TMUX_HEIGHT='60%'
 eval "$(direnv hook zsh)"
 
 # brew install colima
-export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+# export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
 
 # Rust
 if [[ -d $HOME/.cargo ]]; then
@@ -121,3 +121,4 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+
